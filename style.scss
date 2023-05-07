@@ -1,0 +1,174 @@
+$size: 20px;
+$max-width: 1280px;
+$color-main:#000;
+$color-second: #fff;
+$color-third:rgb(251, 163, 0);
+
+@mixin shadow {
+    -webkit-box-shadow: 0px 0px 16px 0px $color-main;
+    -moz-box-shadow: 0px 0px 16px 0px $color-main;
+    box-shadow: 0px 0px 16px 0px $color-main;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    width: 100vw;
+    max-width: $max-width;
+    margin: 0 auto;
+    font-family: 'Proxima Nova', Arial, Helvetica, sans-serif;
+    padding: $size 0;
+
+    .title {
+        font-size: $size * 1.5;
+        color: $color-main;
+        font-weight: 600;
+        margin-left:$size * .5;
+    }
+
+    .frame {
+        width:100%;
+        position:relative;
+
+        &__arrow {
+            position:absolute;
+            top:50%;
+            transform: translateY(-50%);
+            cursor:pointer;
+            z-index:3;
+            width:$size * 1.5;
+            height:$size * 1.5;
+            background-color: rgba($color-main, 40%);
+            color:$color-second;
+            display:flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        &__arrow--left  {
+            left:0;
+            padding-left:8px;
+        }
+
+        &__arrow--right {
+            right:0
+        }
+
+        &__cartInfo {
+            @include shadow;
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform: translate(-50%, -50%);
+            z-index:4;
+            padding:$size * 5;
+            font-size: $size;
+            background-color: $color-third;
+            color:$color-second;
+            display:none;
+            font-weight:bold;
+
+            @media screen and (max-width:850px) {
+                padding:$size * 1.5;
+                text-align: center;
+            }
+        }
+
+        &__products {
+            width:100%;
+            display:flex;
+    
+            .product {
+                margin:$size $size * .5;
+                padding:$size * .5;
+                border-radius:$size;
+                overflow: hidden;
+                transition: all .3s ease-in-out;
+                text-align: center;
+
+                &:hover {
+                    @include shadow
+                }
+
+                &__img {
+                    height:200px;
+                    width:auto;
+                    max-width:100%;
+                    object-fit: contain;
+                    transition: transform .2s ease-in-out;
+                    overflow: hidden;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+
+                &__name {
+                    display:block;
+                    font-size: $size * .7;
+                    text-decoration: none;
+                    color:$color-main;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                    height:50px;
+                    margin: $size * .5 0
+                }
+
+                &__price {
+                    font-size: $size;
+                    color:#f00;
+                    font-weight:bold
+                }
+
+                &__button {
+                    display:block;
+                    margin:$size *.5 auto;
+                    padding:$size * .25 $size * .5;
+                    border:none;
+                    outline:none;
+                    cursor:pointer;
+                    font-size: $size *.8;
+                    background-color: $color-third;
+                    color:$color-second;
+                    transition: background-color .2s ease-in-out;
+
+                    &:hover {
+                        background-color: darken($color-third, 10%);
+                    }
+                }
+            }
+        }
+    }
+
+    
+}
+
+.disable-selection {
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none; 
+    -khtml-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+.slick-list {
+    position: relative;
+    width: 100%;
+    display: block;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.slick-track {
+    width: 100%;
+    display: flex;
+}
